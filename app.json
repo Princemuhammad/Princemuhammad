@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "My 'Umrah Companion",
+    "slug": "my-umrah-companion",
+    "scheme": "umrahcompanion",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#073F33",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#073F33"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.princemuhammad.umrahcompanion"
+    },
+    "android": {
+      "package": "com.princemuhammad.umrahcompanion",
+      "adaptiveIcon": {
+        "backgroundColor": "#073F33",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#073F33"
+        }
+      ]
+    ]
+  }
+}

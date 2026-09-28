@@ -1,0 +1,24 @@
+export type RootStackParamList = {
+  Home: undefined;
+  MainMenu: undefined;
+  UmrahHome: undefined;
+  Preparation: undefined;
+  DosDonts: undefined;
+  WearingIhram: undefined;
+  StateOfIhram: undefined;
+  Miqat: undefined;
+  KnowKaaba: undefined;
+  DamPenalties: undefined;
+  PlacesMakkah: undefined;
+  UmrahSteps: undefined;
+  UmrahStepDetail: { stepIndex: number };
+  MadinahHome: undefined;
+  SendingSalaam: undefined;
+  Rawdah: undefined;
+  DuasMadinah: undefined;
+  PlacesMadinah: undefined;
+  Rabbana40: undefined;
+  NiyyahSalah: undefined;
+  HowToDua: undefined;
+  BookletAnnex: undefined;
+};
