@@ -29,33 +29,35 @@ Android/iOS emulator, or a browser for the web target.
 
 ## Building an installable APK
 
-This sandbox's network policy blocks the hosts an Android build needs
-(`dl.google.com` for the Android SDK, and Expo's own build service), so an
-`.apk` could not be produced inside this session. Two ways to get one,
-outside the sandbox:
-
-**Option A — EAS cloud build (no Android Studio needed, ~10 minutes):**
-
-```bash
-npm install -g eas-cli
-eas login                      # free Expo account
-eas build -p android --profile preview
-```
-
-This repo doesn't yet have an `eas.json`; running `eas build` for the first
-time will offer to create one — accept the defaults, and choose the `apk`
-build type (not `app-bundle`) for the preview profile so you get a direct
-`.apk` link when it finishes.
-
-**Option B — local build with Android Studio:**
+A release APK was built and delivered directly (arm64-v8a, minified,
+~25MB, signed with the standard Android debug key so it installs by
+sideloading). To rebuild it yourself — e.g. for other ABIs, or to sign it
+with your own release key for the Play Store:
 
 ```bash
 npx expo prebuild -p android
 cd android
-./gradlew assembleRelease       # output: android/app/build/outputs/apk/release/
+./gradlew assembleRelease \
+  -PreactNativeArchitectures=arm64-v8a \
+  -Pandroid.enableMinifyInReleaseBuilds=true \
+  -Pandroid.enableShrinkResourcesInReleaseBuilds=true
+# output: android/app/build/outputs/apk/release/app-release.apk
 ```
 
-Requires the Android SDK (installed via Android Studio) and a JDK 17.
+Drop the `-PreactNativeArchitectures` flag to build a universal APK
+covering all ABIs (armeabi-v7a, arm64-v8a, x86, x86_64) instead of just
+arm64 — bigger (~80MB) but works on every device. Requires the Android
+SDK (installed via Android Studio, or `sdkmanager`) and a JDK; JDK 21
+worked fine here despite AGP's docs suggesting 17.
+
+To get a Play-Store-ready `.aab`, or to build without a local Android SDK
+at all, use EAS's cloud build instead:
+
+```bash
+npm install -g eas-cli
+eas login                      # free Expo account
+eas build -p android --profile preview   # choose the "apk" build type
+```
 
 ## Icon
 
